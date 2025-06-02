@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,9 +29,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    private String roles;
 
-    @OneToMany()
-    private List<Note> notes;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Note> notes = new ArrayList<>();
 
 }
